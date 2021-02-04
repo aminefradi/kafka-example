@@ -36,21 +36,21 @@ public class KafkaSimpleController {
     public void getFromKafka(String simpleModel){
 
 
-        System.out.println(simpleModel);
+        System.out.println("Message consumed from myTopic : " + simpleModel);
 
         SimpleModel simpleModel1 = (SimpleModel) jsonConverter.fromJson(simpleModel, SimpleModel.class);
 
-        System.out.println(simpleModel1.toString());
+        System.out.println("Values consumed from myTopic : " + simpleModel1.toString());
     }
 
 
     @KafkaListener(topics = "myTopic2")
     public void getFromKafka2(String moreSimpleModel){
-        System.out.println(moreSimpleModel);
+        System.out.println("Message consumed from myTopic2 : " +  moreSimpleModel);
 
         MoreSimpleModel simpleModel1 = (MoreSimpleModel) jsonConverter.fromJson(moreSimpleModel, MoreSimpleModel.class);
 
-        System.out.println(simpleModel1.toString());
+        System.out.println("Values consumed from myTopic2 : " + simpleModel1.toString());
     }
 
 }
