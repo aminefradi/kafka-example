@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: kafka-prod-cons
+  name: kafka-prod-cons
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kafka-prod-cons
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: kafka-prod-cons
+    spec:
+      containers:
+      - image: aminefradi/kafka_prod_cons
+        name: kafka-prod-cons-zlzqc
+        resources: {}
+status: {}
+--- 
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: kafka-prod-cons
+  name: kafka-prod-cons
+spec:
+  ports:
+  - name: 80-8080
+    port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: kafka-prod-cons
+  type: ClusterIP
+status:
+  loadBalancer: {}
